@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: database
+  labels:
+    database: database-pod
+spec:
+  containers:
+    - name: mysql-rappidu
+      image: localhost:5001/mysql-container
+      ports:
+        - containerPort: 3306

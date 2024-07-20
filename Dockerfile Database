@@ -1,0 +1,15 @@
+FROM mysql:5.7
+
+# Defina as variáveis de ambiente necessárias
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=rappidu
+ENV MYSQL_PASSWORD=root
+
+# Copie o arquivo SQL para o diretório de inicialização do MySQL
+COPY ./initial-database.sql /docker-entrypoint-initdb.d/dump.sql
+
+# Exponha a porta 3306
+EXPOSE 3306
+
+# Comando para iniciar o MySQL com o plugin de autenticação nativo
+CMD ["--default-authentication-plugin=mysql_native_password"]

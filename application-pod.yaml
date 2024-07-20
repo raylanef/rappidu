@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: application
+  labels:
+    app: application-pod
+spec:
+  containers:
+    - name: rappidu-application
+      image: localhost:5001/rappidu-monolito
+      ports:
+        - containerPort: 3306
