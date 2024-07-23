@@ -1,6 +1,6 @@
 package br.com.rappidu.application.dto.response;
 
-import br.com.rappidu.domain.models.StatusOrder;
+import br.com.rappidu.domain.entities.StatusOrder;
 import lombok.Getter;
 import org.springframework.hateoas.RepresentationModel;
 

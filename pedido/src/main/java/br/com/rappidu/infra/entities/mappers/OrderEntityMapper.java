@@ -1,6 +1,6 @@
 package br.com.rappidu.infra.entities.mappers;
 
-import br.com.rappidu.domain.models.Order;
+import br.com.rappidu.domain.entities.Order;
 import br.com.rappidu.infra.entities.OrderEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

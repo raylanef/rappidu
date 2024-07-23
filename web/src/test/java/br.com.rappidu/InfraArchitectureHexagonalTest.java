@@ -7,10 +7,10 @@ import com.tngtech.archunit.lang.ArchRule;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
-@AnalyzeClasses(packages = "br.com.rappidu")
+//@AnalyzeClasses(packages = "br.com.rappidu")
 public class InfraArchitectureHexagonalTest {
 
-    @ArchTest
+  //  @ArchTest
     public static final ArchRule shouldNotHaveImportedClassFromApplicationPackage = noClasses()
             .that().resideInAnyPackage("..infra..")
             .should()

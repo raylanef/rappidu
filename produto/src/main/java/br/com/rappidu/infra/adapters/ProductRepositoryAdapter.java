@@ -1,7 +1,7 @@
 package br.com.rappidu.infra.adapters;
 
-import br.com.rappidu.domain.models.Product;
-import br.com.rappidu.domain.models.ProductType;
+import br.com.rappidu.domain.entities.Product;
+import br.com.rappidu.domain.entities.ProductType;
 import br.com.rappidu.domain.repositories.ProductRepositoryPortOut;
 import br.com.rappidu.infra.entities.ProductEntity;
 import br.com.rappidu.infra.entities.mappers.ProductEntityMapper;

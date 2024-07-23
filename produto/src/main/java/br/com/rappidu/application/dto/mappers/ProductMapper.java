@@ -2,13 +2,9 @@ package br.com.rappidu.application.dto.mappers;
 
 import br.com.rappidu.application.dto.request.ProductRequest;
 import br.com.rappidu.application.dto.responses.ProductResponse;
-import br.com.rappidu.domain.models.Product;
-import br.com.rappidu.domain.models.ProductType;
-import br.com.rappidu.infra.entities.ProductEntity;
+import br.com.rappidu.domain.entities.Product;
+import br.com.rappidu.domain.entities.ProductType;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {

@@ -1,6 +1,6 @@
 package br.com.rappidu.infra.entities;
 
-import br.com.rappidu.domain.models.StatusOrder;
+import br.com.rappidu.domain.entities.StatusOrder;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

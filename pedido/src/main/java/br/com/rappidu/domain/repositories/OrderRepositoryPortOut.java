@@ -1,7 +1,7 @@
 package br.com.rappidu.domain.repositories;
 
-import br.com.rappidu.domain.models.Order;
-import br.com.rappidu.domain.models.Product;
+import br.com.rappidu.domain.entities.Order;
+import br.com.rappidu.domain.entities.Product;
 
 import java.util.List;
 

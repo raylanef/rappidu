@@ -1,7 +1,7 @@
 package br.com.rappidu.infra.mappers;
 
-import br.com.rappidu.domain.models.Address;
-import br.com.rappidu.infra.entities.AddressEntity;
+import br.com.rappidu.domain.entities.Address;
+import br.com.rappidu.infra.persistence.entities.AddressEntity;
 import org.mapstruct.Mapper;
 
 import java.util.List;

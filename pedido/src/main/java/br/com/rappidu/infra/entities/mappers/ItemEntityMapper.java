@@ -1,6 +1,6 @@
 package br.com.rappidu.infra.entities.mappers;
 
-import br.com.rappidu.domain.models.Item;
+import br.com.rappidu.domain.entities.Item;
 import br.com.rappidu.infra.entities.ItemEntity;
 import org.mapstruct.Mapper;
 

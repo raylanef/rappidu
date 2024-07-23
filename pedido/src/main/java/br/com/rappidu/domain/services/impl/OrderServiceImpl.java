@@ -1,9 +1,9 @@
 package br.com.rappidu.domain.services.impl;
 
 import br.com.rappidu.domain.repositories.OrderRepositoryPortOut;
-import br.com.rappidu.domain.models.*;
+import br.com.rappidu.domain.entities.*;
 import br.com.rappidu.domain.services.OrderService;
-import br.com.rappidu.domain.models.Product;
+import br.com.rappidu.domain.entities.Product;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;

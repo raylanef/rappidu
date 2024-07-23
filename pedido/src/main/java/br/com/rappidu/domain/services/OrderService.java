@@ -1,8 +1,7 @@
 package br.com.rappidu.domain.services;
 
-import br.com.rappidu.domain.models.Order;
-import br.com.rappidu.domain.models.OrderRequest;
-import br.com.rappidu.domain.models.StatusOrder;
+import br.com.rappidu.domain.entities.Order;
+import br.com.rappidu.domain.entities.OrderRequest;
 
 import java.util.List;
 

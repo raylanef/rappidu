@@ -5,8 +5,8 @@ import br.com.rappidu.domain.exceptions.OrderNotFountException;
 
 import br.com.rappidu.domain.repositories.OrderRepositoryPortOut;
 
-import br.com.rappidu.domain.models.Order;
-import br.com.rappidu.domain.models.Product;
+import br.com.rappidu.domain.entities.Order;
+import br.com.rappidu.domain.entities.Product;
 
 import br.com.rappidu.infra.entities.mappers.OrderEntityMapper;
 import br.com.rappidu.infra.entities.mappers.ProductEntityMapper;
