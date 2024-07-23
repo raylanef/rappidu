@@ -1,8 +1,8 @@
-package br.com.rappidu.infra.entities.mappers;
+package br.com.rappidu.infra.persistence.mappers;
 
 import br.com.rappidu.domain.entities.Product;
 import br.com.rappidu.domain.entities.ProductType;
-import br.com.rappidu.infra.entities.ProductEntity;
+import br.com.rappidu.infra.persistence.entities.ProductEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

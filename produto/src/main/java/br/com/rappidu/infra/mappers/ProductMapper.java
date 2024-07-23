@@ -1,7 +1,7 @@
-package br.com.rappidu.application.dto.mappers;
+package br.com.rappidu.infra.mappers;
 
-import br.com.rappidu.application.dto.request.ProductRequest;
-import br.com.rappidu.application.dto.responses.ProductResponse;
+import br.com.rappidu.infra.controllers.dto.request.ProductRequest;
+import br.com.rappidu.infra.controllers.dto.responses.ProductResponse;
 import br.com.rappidu.domain.entities.Product;
 import br.com.rappidu.domain.entities.ProductType;
 import org.mapstruct.Mapper;

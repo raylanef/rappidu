@@ -1,4 +1,4 @@
-package br.com.rappidu.application.dto.request;
+package br.com.rappidu.infra.controllers.dto.request;
 
 
 import java.math.BigDecimal;

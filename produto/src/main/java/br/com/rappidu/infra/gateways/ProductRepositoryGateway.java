@@ -2,9 +2,9 @@ package br.com.rappidu.infra.gateways;
 
 import br.com.rappidu.domain.entities.Product;
 import br.com.rappidu.domain.entities.ProductType;
-import br.com.rappidu.domain.repositories.ProductRepositoryPortOut;
-import br.com.rappidu.infra.entities.ProductEntity;
-import br.com.rappidu.infra.entities.mappers.ProductEntityMapper;
+import br.com.rappidu.application.gateways.ProductGateway;
+import br.com.rappidu.infra.persistence.entities.ProductEntity;
+import br.com.rappidu.infra.persistence.mappers.ProductEntityMapper;
 import br.com.rappidu.infra.persistence.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class ProductRepositoryAdapter implements ProductRepositoryPortOut {
+public class ProductRepositoryGateway implements ProductGateway {
 
     private final ProductEntityMapper mapper;
     private final ProductRepository repository;

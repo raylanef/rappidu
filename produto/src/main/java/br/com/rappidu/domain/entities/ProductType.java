@@ -3,6 +3,7 @@ package br.com.rappidu.domain.entities;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Getter
@@ -14,8 +15,10 @@ public enum ProductType {
     private final Integer code;
     private final String name;
 
+    private static final ProductType[] VALUES = values();
+
     public static ProductType getByCode(Integer code) {
-       return Stream.of(values())
+       return Stream.of(VALUES)
                .filter(v -> v.code.equals(code))
                .findAny()
                .orElseThrow();

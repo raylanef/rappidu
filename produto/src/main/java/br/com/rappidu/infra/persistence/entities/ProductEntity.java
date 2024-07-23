@@ -1,4 +1,4 @@
-package br.com.rappidu.infra.entities;
+package br.com.rappidu.infra.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package br.com.rappidu.infra.persistence;
 
-import br.com.rappidu.infra.entities.ProductEntity;
+import br.com.rappidu.infra.persistence.entities.ProductEntity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;

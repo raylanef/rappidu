@@ -8,7 +8,7 @@ import br.com.rappidu.domain.entities.Order;
 import br.com.rappidu.domain.entities.Product;
 
 import br.com.rappidu.infra.mappers.OrderEntityMapper;
-import br.com.rappidu.infra.entities.mappers.ProductEntityMapper;
+import br.com.rappidu.infra.persistence.mappers.ProductEntityMapper;
 import br.com.rappidu.infra.persistence.OrderRepository;
 import br.com.rappidu.infra.persistence.ProductRepository;
 import lombok.AllArgsConstructor;

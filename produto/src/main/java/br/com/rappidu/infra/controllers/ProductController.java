@@ -1,12 +1,14 @@
-package br.com.rappidu.application.controllers;
+package br.com.rappidu.infra.controllers;
 
-import br.com.rappidu.application.dto.request.ProductRequest;
-import br.com.rappidu.application.dto.responses.ProductResponse;
-import br.com.rappidu.application.dto.mappers.ProductMapper;
+import br.com.rappidu.application.usecases.CreateProductUseCase;
+import br.com.rappidu.application.usecases.FindProductUseCase;
+import br.com.rappidu.infra.controllers.dto.request.ProductRequest;
+import br.com.rappidu.infra.controllers.dto.responses.ProductResponse;
+import br.com.rappidu.infra.mappers.ProductMapper;
 import br.com.rappidu.domain.entities.Product;
 import br.com.rappidu.domain.entities.ProductType;
-import br.com.rappidu.domain.services.ProductService;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.processing.Find;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.http.HttpStatus;
@@ -20,29 +22,31 @@ import java.util.stream.Collectors;
 @RequestMapping("/products")
 @AllArgsConstructor
 @ComponentScan(
-        basePackages = "br.com.rappidu.domain.services",
+        basePackages = "br.com.rappidu.application.usecases",
         includeFilters = @ComponentScan.Filter(
                 type = FilterType.ASSIGNABLE_TYPE,
-                classes = ProductService.class
+                classes = {CreateProductUseCase.class,
+                           FindProductUseCase.class}
         )
 )
 public class ProductController {
 
     private final ProductMapper mapper;
-    private final ProductService service;
-
+    private final CreateProductUseCase createProductUseCase;
+    private final FindProductUseCase findProductUseCase;
 
     @GetMapping
     public ResponseEntity<List<ProductResponse>> listByType(@RequestParam ProductType productTypeResponse) {
-        var x = service.findByType(productTypeResponse);
-        return ResponseEntity.ok(x.stream().map(mapper::toResponse).collect(Collectors.toList()));
+        List<Product> products = findProductUseCase.findByType(productTypeResponse);
+        return ResponseEntity.ok(products.stream()
+                .map(mapper::toResponse).collect(Collectors.toList()));
 
     }
 
     @PostMapping
     public ResponseEntity<String> register(@RequestBody ProductRequest productRequest){
         Product product = mapper.toModel(productRequest);
-        service.create(product);
+        createProductUseCase.create(product);
         return new ResponseEntity<>("Product Created", HttpStatus.CREATED);
     }
 
