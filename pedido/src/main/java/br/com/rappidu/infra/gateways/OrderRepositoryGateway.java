@@ -48,7 +48,10 @@ public class OrderRepositoryGateway implements OrderGateway {
 
     @Override
     public List<Order> findAll() {
-       return mapper.toModel(repo.findAll());
+       return repo
+               .findWhereStatusIsNotFinishedOrWaitPaymentOrderByCreateAtAsc()
+               .map(mapper::toModel)
+               .orElseThrow(() -> new OrderNotFountException("No Orders found"));
     }
 
 }

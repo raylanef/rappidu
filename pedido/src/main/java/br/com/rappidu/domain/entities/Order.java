@@ -24,6 +24,6 @@ public class Order {
     }
 
     public void pay() {
-        this.status = StatusOrder.OPEN;
+        this.status = StatusOrder.RECEIVED;
     }
 }

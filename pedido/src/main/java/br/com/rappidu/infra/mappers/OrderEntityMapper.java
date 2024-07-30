@@ -1,6 +1,7 @@
 package br.com.rappidu.infra.mappers;
 
 import br.com.rappidu.domain.entities.Order;
+import br.com.rappidu.domain.entities.StatusOrder;
 import br.com.rappidu.infra.persistence.entities.OrderEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,5 +20,9 @@ public interface OrderEntityMapper {
 
     @Mapping(target = "code", source = "id")
     List<Order> toModel(List<OrderEntity> entity);
+
+    default StatusOrder getStatus(Integer integer) {
+        return StatusOrder.getByCode(integer);
+    }
 
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,23 @@ public class OrderEntity {
     @Column(name = "AMOUNT")
     private BigDecimal amount;
 
-    @Enumerated(EnumType.STRING)
-    private StatusOrder status;
+    @Column(name = "STATUS")
+    private Integer status;
+
+    @Column(name = "CREATE_AT")
+    private LocalDateTime createAt;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
     private List<ItemEntity> items = new ArrayList<>();
+
+    @PrePersist
+    protected void onCreate() {
+        this.createAt = LocalDateTime.now();
+    }
+
+    public void setStatus(StatusOrder status) {
+        this.status = status.getCode();
+    }
 
 }
