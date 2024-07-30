@@ -2,6 +2,7 @@ package br.com.rappidu.domain.entities;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -12,12 +13,14 @@ public class Order {
     private final BigDecimal amount;
     private final List<Item> items;
     private StatusOrder status;
+    private final LocalDateTime createAt;
 
-    public Order(Long code, String customerName, List<Item> items, StatusOrder status) {
+    public Order(Long code, String customerName, List<Item> items, StatusOrder status, LocalDateTime createAt) {
         this.code = code;
         this.status = status;
         this.customerName = customerName;
         this.items = items;
+        this.createAt = createAt;
         this.amount = items.stream()
                 .map(Item::amount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
