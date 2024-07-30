@@ -1,5 +1,6 @@
 package br.com.rappidu.domain.entities;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,8 +13,11 @@ public class Order {
     private final String customerName;
     private final BigDecimal amount;
     private final List<Item> items;
-    private StatusOrder status;
     private final LocalDateTime createAt;
+
+    @Setter
+    private StatusOrder status;
+
 
     public Order(Long code, String customerName, List<Item> items, StatusOrder status, LocalDateTime createAt) {
         this.code = code;
@@ -29,4 +33,5 @@ public class Order {
     public void pay() {
         this.status = StatusOrder.RECEIVED;
     }
+
 }
