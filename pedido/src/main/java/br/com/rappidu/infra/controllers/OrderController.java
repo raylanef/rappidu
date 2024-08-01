@@ -7,7 +7,6 @@ import br.com.rappidu.application.usecases.PayOrderUseCase;
 import br.com.rappidu.application.usecases.UpdateStatusOrderUseCase;
 import br.com.rappidu.domain.entities.Order;
 import br.com.rappidu.domain.entities.OrderRequest;
-import br.com.rappidu.domain.entities.StatusOrder;
 import br.com.rappidu.infra.controllers.dto.OrderUpdateRequestDTO;
 import br.com.rappidu.infra.controllers.dto.mappers.OrderMapper;
 import br.com.rappidu.infra.controllers.dto.request.OrderRequestDto;
@@ -78,7 +77,7 @@ public class OrderController {
     @GetMapping("/{code}")
     public ResponseEntity<OrderResponseDto> findByCode(@PathVariable Long code) {
         var order = findOrderUseCase.findByCode(code);
-        OrderResponseDto responseDto = mapper.toResponseDto(order);
+        var responseDto = mapper.toResponseDto(order);
 
         return ResponseEntity.ok(responseDto);
     }

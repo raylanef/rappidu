@@ -38,6 +38,10 @@ public class OrderEntity {
     @JoinColumn(name = "ORDER_ID")
     private List<ItemEntity> items = new ArrayList<>();
 
+    @OneToOne(cascade =  CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id")
+    private PaymentEntity payment;
+
     @PrePersist
     protected void onCreate() {
         this.createAt = LocalDateTime.now();

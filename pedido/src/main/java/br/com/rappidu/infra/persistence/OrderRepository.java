@@ -11,4 +11,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
     @Query(value = "SELECT o FROM OrderEntity o where o.status != 5 ORDER BY o.createAt ASC")
     Optional<List<OrderEntity>> findWhereStatusIsNotFinishedOrWaitPaymentOrderByCreateAtAsc();
+
+    OrderEntity findByPaymentId(Long id);
 }

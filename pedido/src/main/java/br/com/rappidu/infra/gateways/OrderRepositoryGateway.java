@@ -8,6 +8,7 @@ import br.com.rappidu.domain.entities.Order;
 import br.com.rappidu.domain.entities.Product;
 
 import br.com.rappidu.infra.mappers.OrderEntityMapper;
+import br.com.rappidu.infra.persistence.entities.OrderEntity;
 import br.com.rappidu.infra.persistence.mappers.ProductEntityMapper;
 import br.com.rappidu.infra.persistence.OrderRepository;
 import br.com.rappidu.infra.persistence.ProductRepository;
@@ -54,4 +55,9 @@ public class OrderRepositoryGateway implements OrderGateway {
                .orElseThrow(() -> new OrderNotFountException("No Orders found"));
     }
 
+    @Override
+    public Order findByPaymentCode(Long code) {
+        OrderEntity entity = repo.findByPaymentId(code);
+        return mapper.toModel(entity);
+    }
 }

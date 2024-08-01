@@ -21,7 +21,7 @@ public class CreateOrderUseCase  {
 
     private Order buildOrder(OrderRequest orderRequest) {
         List<Item> items = productRequestListToItems(orderRequest.products());
-        return new Order(null,orderRequest.customerName(), items, StatusOrder.WAIT_PAYMENT, LocalDateTime.now());
+        return Order.create(orderRequest.customerName(), items);
     }
 
     private List<Item> productRequestListToItems(List<ProductRequest> productsRequest) {

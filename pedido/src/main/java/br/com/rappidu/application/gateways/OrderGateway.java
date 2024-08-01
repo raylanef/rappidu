@@ -10,4 +10,5 @@ public interface OrderGateway {
     Product findProductByCode(Long id);
     Order findByCode(Long id);
     List<Order> findAll();
+    Order findByPaymentCode(Long code);
 }
