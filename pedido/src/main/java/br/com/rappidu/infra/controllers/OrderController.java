@@ -8,9 +8,14 @@ import br.com.rappidu.application.usecases.UpdateStatusOrderUseCase;
 import br.com.rappidu.domain.entities.Order;
 import br.com.rappidu.domain.entities.OrderRequest;
 import br.com.rappidu.infra.controllers.dto.OrderUpdateRequestDTO;
+import br.com.rappidu.infra.controllers.dto.RequestPaymentUpdate;
 import br.com.rappidu.infra.controllers.dto.mappers.OrderMapper;
 import br.com.rappidu.infra.controllers.dto.request.OrderRequestDto;
 import br.com.rappidu.infra.controllers.dto.response.OrderResponseDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
@@ -69,6 +74,11 @@ public class OrderController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @Operation(summary = "Atualização de status de pedido",
+            description = "Atualizar status de pedido gerado.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Pedido para ser atualizado",
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = OrderUpdateRequestDTO.class))))
     @PatchMapping("/{code}")
     public ResponseEntity<?> updateStatus(Long code, @RequestBody OrderUpdateRequestDTO orderUpdateRequest) {
         updateStatusOrderUseCase.updateStatus(code, orderUpdateRequest.statusOrder());
