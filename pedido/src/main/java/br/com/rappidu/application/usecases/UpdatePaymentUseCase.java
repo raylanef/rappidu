@@ -20,15 +20,13 @@ public class UpdatePaymentUseCase {
         Payment paymentDb = paymentGateway.findById(paymentRequest.getCode());
 
         if(paymentRequest.getStatus() == PaymentStatus.PAID) {
-            if (!paymentRequest.getAmount().equals(paymentDb.getAmount())) {
-                throw new InvalidPaymentException("O valor pago é menor que o esperado");
+            if (paymentRequest.getAmount().compareTo(paymentDb.getAmount()) != 0) {
+                throw new InvalidPaymentException("O valor pago é diferente do esperado");
             }
-
             Order order = orderGateway.findByPaymentCode(paymentRequest.getCode());
             order.pay();
             orderGateway.save(order);
         }
-
         paymentGateway.save(paymentRequest);
     }
 }

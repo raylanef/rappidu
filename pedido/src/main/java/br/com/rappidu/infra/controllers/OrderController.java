@@ -38,7 +38,6 @@ public class OrderController {
 
     private final CreateOrderUseCase createOrderUseCase;
     private final FindOrderUseCase findOrderUseCase;
-    private final PayOrderUseCase payOrderUseCase;
     private final UpdateStatusOrderUseCase updateStatusOrderUseCase;
     private final OrderMapper mapper;
 
