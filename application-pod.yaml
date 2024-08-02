@@ -4,9 +4,10 @@ metadata:
   name: application
   labels:
     app: application-pod
+  namespace: rappidu-application
 spec:
   containers:
     - name: rappidu-application
       image: localhost:5001/rappidu-monolito
       ports:
-        - containerPort: 3306
+        - containerPort: 8080

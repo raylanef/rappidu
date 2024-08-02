@@ -4,6 +4,7 @@ metadata:
   name: database
   labels:
     database: database-pod
+  namespace: rappidu-database
 spec:
   containers:
     - name: mysql-rappidu
