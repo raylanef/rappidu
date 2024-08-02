@@ -5,6 +5,7 @@ import br.com.rappidu.domain.entities.*;
 import br.com.rappidu.domain.entities.Product;
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class CreateOrderUseCase  {
 
     private Order buildOrder(OrderRequest orderRequest) {
         List<Item> items = productRequestListToItems(orderRequest.products());
-        return new Order(null,orderRequest.customerName(), items, StatusOrder.WAIT_PAYMENT);
+        return Order.create(orderRequest.customerName(), items);
     }
 
     private List<Item> productRequestListToItems(List<ProductRequest> productsRequest) {

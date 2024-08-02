@@ -4,8 +4,10 @@ package br.com.rappidu.infra.controllers;
 import br.com.rappidu.application.usecases.CreateOrderUseCase;
 import br.com.rappidu.application.usecases.FindOrderUseCase;
 import br.com.rappidu.application.usecases.PayOrderUseCase;
+import br.com.rappidu.application.usecases.UpdateStatusOrderUseCase;
 import br.com.rappidu.domain.entities.Order;
 import br.com.rappidu.domain.entities.OrderRequest;
+import br.com.rappidu.infra.controllers.dto.OrderUpdateRequestDTO;
 import br.com.rappidu.infra.controllers.dto.mappers.OrderMapper;
 import br.com.rappidu.infra.controllers.dto.request.OrderRequestDto;
 import br.com.rappidu.infra.controllers.dto.response.OrderResponseDto;
@@ -27,7 +29,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
         basePackages = "br.com.rappidu.application.usecases",
         includeFilters = @ComponentScan.Filter(
                 type = FilterType.ASSIGNABLE_TYPE,
-                classes = {CreateOrderUseCase.class, FindOrderUseCase.class, PayOrderUseCase.class}
+                classes = {CreateOrderUseCase.class, FindOrderUseCase.class,
+                        PayOrderUseCase.class, UpdateStatusOrderUseCase.class}
         )
 )
 @AllArgsConstructor
@@ -35,7 +38,7 @@ public class OrderController {
 
     private final CreateOrderUseCase createOrderUseCase;
     private final FindOrderUseCase findOrderUseCase;
-    private final PayOrderUseCase payOrderUseCase;
+    private final UpdateStatusOrderUseCase updateStatusOrderUseCase;
     private final OrderMapper mapper;
 
     // TODO Aplicar paginação
@@ -51,30 +54,24 @@ public class OrderController {
         Order order = createOrderUseCase.create(request);
         OrderResponseDto orderResponseDto = mapper.toResponseDto(order);
 
-        orderResponseDto.add(linkTo(methodOn(OrderController.class)
-                .pay(orderResponseDto.getCode()))
+        orderResponseDto.add(linkTo(methodOn(PaymentController.class)
+                .update(orderResponseDto.getCode(), null))
                 .withSelfRel());
 
         return ResponseEntity.ofNullable(orderResponseDto);
     }
 
-    @PostMapping("/{code}/pay")
-    public ResponseEntity<?> pay(Long code) {
-        Order order = payOrderUseCase.pay(code);
-        OrderResponseDto responseDto = mapper.toResponseDto(order);
-
-        responseDto.add(linkTo(methodOn(OrderController.class)
-                .findByCode(responseDto.getCode()))
-                .withSelfRel());
+    @GetMapping("/{code}")
+    public ResponseEntity<OrderResponseDto> findByCode(@PathVariable Long code) {
+        var order = findOrderUseCase.findByCode(code);
+        var responseDto = mapper.toResponseDto(order);
 
         return ResponseEntity.ok(responseDto);
     }
 
-    @GetMapping("/{code}")
-    public ResponseEntity<OrderResponseDto> findByCode(@PathVariable Long code) {
-        Order order = findOrderUseCase.findByCode(code);
-        OrderResponseDto responseDto = mapper.toResponseDto(order);
-
-        return ResponseEntity.ok(responseDto);
+    @PatchMapping("/{code}")
+    public ResponseEntity<?> updateStatus(Long code, @RequestBody OrderUpdateRequestDTO orderUpdateRequest) {
+        updateStatusOrderUseCase.updateStatus(code, orderUpdateRequest.statusOrder());
+        return ResponseEntity.ok().build();
     }
 }
