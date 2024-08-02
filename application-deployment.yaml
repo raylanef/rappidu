@@ -10,9 +10,9 @@ spec:
   selector:
     matchLabels:
       app: application-pod
-  template: 
-    metadata: 
-      labels: 
+  template:
+    metadata:
+      labels:
         app: application-pod
     spec:
       containers:
