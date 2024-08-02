@@ -55,23 +55,11 @@ public class OrderController {
         Order order = createOrderUseCase.create(request);
         OrderResponseDto orderResponseDto = mapper.toResponseDto(order);
 
-        orderResponseDto.add(linkTo(methodOn(OrderController.class)
-                .pay(orderResponseDto.getCode()))
+        orderResponseDto.add(linkTo(methodOn(PaymentController.class)
+                .update(orderResponseDto.getCode(), null))
                 .withSelfRel());
 
         return ResponseEntity.ofNullable(orderResponseDto);
-    }
-
-    @PostMapping("/{code}/pay")
-    public ResponseEntity<?> pay(Long code) {
-        Order order = payOrderUseCase.pay(code);
-        OrderResponseDto responseDto = mapper.toResponseDto(order);
-
-        responseDto.add(linkTo(methodOn(OrderController.class)
-                .findByCode(responseDto.getCode()))
-                .withSelfRel());
-
-        return ResponseEntity.ok(responseDto);
     }
 
     @GetMapping("/{code}")

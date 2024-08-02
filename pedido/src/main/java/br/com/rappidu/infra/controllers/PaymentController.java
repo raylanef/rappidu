@@ -24,6 +24,7 @@ public class PaymentController {
     private final FindPaymentUseCase findPaymentUseCase;
     private final UpdatePaymentUseCase updatePaymentUseCase;
 
+
     @PatchMapping("/{code}")
     public ResponseEntity<?> update(@PathVariable Long code, @RequestBody RequestPaymentUpdate paymentUpdate) {
         Payment payment = new Payment(code, paymentUpdate.amount(), paymentUpdate.status(), paymentUpdate.type());
