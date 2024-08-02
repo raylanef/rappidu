@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-deployment
+  #namespace: rappidu-application
+  labels:
+    app: application-pod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: application-pod
+  template: 
+    metadata: 
+      labels: 
+        app: application-pod
+    spec:
+      containers:
+        - name: rappidu-application
+          image: localhost:5001/rappidu-monolito
+          ports:
+            - containerPort: 8080
