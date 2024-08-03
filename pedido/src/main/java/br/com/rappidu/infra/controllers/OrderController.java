@@ -80,7 +80,7 @@ public class OrderController {
                     required = true,
                     content = @Content(schema = @Schema(implementation = OrderUpdateRequestDTO.class))))
     @PatchMapping("/{code}")
-    public ResponseEntity<?> updateStatus(Long code, @RequestBody OrderUpdateRequestDTO orderUpdateRequest) {
+    public ResponseEntity<?> updateStatus(@PathVariable Long code, @RequestBody OrderUpdateRequestDTO orderUpdateRequest) {
         updateStatusOrderUseCase.updateStatus(code, orderUpdateRequest.statusOrder());
         return ResponseEntity.ok().build();
     }
