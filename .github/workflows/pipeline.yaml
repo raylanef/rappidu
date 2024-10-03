@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - teste
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read 
 
 jobs:
   build:
@@ -20,7 +23,6 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::052720570949:role/LabRole
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
