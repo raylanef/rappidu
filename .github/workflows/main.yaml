@@ -45,11 +45,23 @@ jobs:
       - name: Run CodeQL Analysis
         uses: github/codeql-action/analyze@v2
 
-      - name: Generate Coverage Badge
-        uses: cicirello/jacoco-badge-generator@v2.11.0
-        with:
-          jacoco-coverage-xml: target/site/jacoco/jacoco.xml
-          minimum-coverage-percentage: 70
+      - name: Check test coverage
+        run: |
+            # Extrai a cobertura do arquivo XML do JaCoCo
+            COVERAGE=$(xmllint --xpath "string(//report/counter[@type='INSTRUCTION']/@covered)" target/site/jacoco/jacoco.xml)
+            MISSED=$(xmllint --xpath "string(//report/counter[@type='INSTRUCTION']/@missed)" target/site/jacoco/jacoco.xml)
+            
+            # Calcula a porcentagem de cobertura
+            TOTAL=$((COVERAGE + MISSED))
+            PERCENTAGE=$((COVERAGE * 100 / TOTAL))
+            
+            echo "Cobertura atual: $PERCENTAGE%"
+            
+            # Falha se a cobertura for menor que 70%
+            if [ $PERCENTAGE -lt 70 ]; then
+              echo "Cobertura de testes abaixo de 70%."
+              exit 1
+            fi
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
