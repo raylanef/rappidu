@@ -45,7 +45,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
       - name: Generate Coverage Badge
-        uses: cicirello/jacoco-badge-generator@v3.0.0
+        uses: cicirello/jacoco-badge-generator@v2.11.0
         with:
           jacoco-coverage-xml: target/site/jacoco/jacoco.xml
           minimum-coverage-percentage: 70
