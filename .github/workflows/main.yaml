@@ -45,6 +45,9 @@ jobs:
       - name: Run CodeQL Analysis
         uses: github/codeql-action/analyze@v2
 
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
       - name: Check test coverage
         run: |
             # Extrai a cobertura do arquivo XML do JaCoCo
